@@ -9,6 +9,7 @@
   "author": "Lucas Moura",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^7.6.0",
     "bcrypt": "^6.0.0",
     "express": "^5.2.1",
     "zod": "^4.3.6"
