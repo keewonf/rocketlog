@@ -13,7 +13,7 @@ const bodySchema = z.object({
 
 class UsersController {
   async create(request: Request, response: Response) {
-    const { name, email, password } = bodySchema.parse(request.body);
+    const { name, email, password, role } = bodySchema.parse(request.body);
 
     const userWithSameEmail = await prisma.user.findFirst({ where: { email } });
 
@@ -28,10 +28,11 @@ class UsersController {
         name,
         email,
         password: hashedPassword,
+        role,
       },
     });
 
-    const { password: _, ...userWithoutPassword} = user
+    const { password: _, ...userWithoutPassword } = user;
 
     return response.status(201).json(userWithoutPassword);
   }
