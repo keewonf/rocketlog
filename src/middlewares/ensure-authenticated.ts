@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
-
+import { UserRole } from "@/generated/prisma";
 import { authConfig } from "@/configs/auth";
 import { AppError } from "@/utils/AppError";
 
 interface TokenPayload {
-  role: string;
+  role: UserRole;
   sub: string;
 }
 
@@ -38,4 +38,4 @@ function ensureAuthenticated(
   }
 }
 
-export { ensureAuthenticated}
+export { ensureAuthenticated };
