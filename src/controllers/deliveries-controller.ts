@@ -12,6 +12,14 @@ class DeliveriesController {
   async create(request: Request, response: Response) {
     const { user_id, description } = bodySchema.parse(request.body);
 
+    const userExists = await prisma.user.findUnique({
+      where: { id: user_id },
+    });
+
+    if (!userExists) {
+      throw new AppError("User not found", 404);
+    }
+
     const delivery = await prisma.delivery.create({
       data: {
         description,
