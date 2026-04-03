@@ -9,6 +9,13 @@ const paramsSchema = z.object({
 const bodySchema = z.object({
   status: z.enum(["processing", "shipped", "delivered"]),
 });
+type DeliveryStatus = z.infer<typeof bodySchema>["status"];
+
+const statusLabelPtBr: Record<DeliveryStatus, string> = {
+  processing: "em processamento",
+  shipped: "enviado",
+  delivered: "entregue",
+};
 
 class DeliveriesStatusController {
   async update(request: Request, response: Response) {
@@ -29,6 +36,15 @@ class DeliveriesStatusController {
       },
       where: {
         id,
+      },
+    });
+
+    const statusMessage = `O status do pedido foi alterado para ${statusLabelPtBr[status]}`;
+
+    await prisma.deliveryLog.create({
+      data: {
+        deliveryId: id,
+        description: statusMessage,
       },
     });
 
