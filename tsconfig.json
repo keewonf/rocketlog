@@ -17,7 +17,7 @@
     "outDir": "./dist",
     "baseUrl": ".",
     "ignoreDeprecations": "6.0",
-    "types": ["node"],
+    "types": ["node", "jest"],
     "resolveJsonModule": true,
     "strict": true,
     "sourceMap": true,
