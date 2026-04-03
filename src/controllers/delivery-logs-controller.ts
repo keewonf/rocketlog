@@ -46,6 +46,12 @@ class DeliveryLogsController {
       where: {
         id: delivery_id,
       },
+      include: {
+        user: {
+          select: { name: true, email: true },
+        },
+        logs: true,
+      },
     });
     if (!request.user) {
       throw new AppError("Unauthorized", 401);
