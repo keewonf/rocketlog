@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
-import { UserRole } from "@/generated/prisma";
+import { UserRole } from "@prisma/client";
 import { authConfig } from "@/configs/auth";
 import { AppError } from "@/utils/AppError";
 

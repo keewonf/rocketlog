@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { AppError } from "@/utils/AppError";
-import { UserRole } from "@/generated/prisma";
+import { UserRole } from "@prisma/client";
 
 // Factory middleware to protect routes by accepted roles.
 function verifyUserAuthorization(role: UserRole[]) {
