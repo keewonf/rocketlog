@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { AppError } from "@/utils/AppError";
 import { z, ZodError } from "zod";
 
+// Single place to map domain/validation/runtime errors to HTTP responses.
 function errorHandling(
   error: any,
   req: Request,

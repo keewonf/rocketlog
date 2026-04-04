@@ -5,7 +5,7 @@ import { z } from "zod";
 
 const bodySchema = z.object({
   user_id: z.uuid(),
-  description: z.string().min(6, "A descrição deve ter no mínimo 6 caracteres"),
+  description: z.string().min(6, "Description must be at least 6 characters long"),
 });
 
 class DeliveriesController {
@@ -32,6 +32,7 @@ class DeliveriesController {
 
   async index(request: Request, response: Response) {
     const deliveries = await prisma.delivery.findMany({
+      // Return only public user fields to keep payloads minimal and safe.
       include: {
         user: {
           select: { name: true, email: true },

@@ -5,7 +5,7 @@ import { z } from "zod";
 
 const bodySchema = z.object({
   delivery_id: z.uuid(),
-  description: z.string().min(6, "A descrição deve ter no mínimo 6 caracteres"),
+  description: z.string().min(6, "Description must be at least 6 characters long"),
 });
 const paramsSchema = z.object({
   delivery_id: z.uuid(),
@@ -25,6 +25,7 @@ class DeliveryLogsController {
       throw new AppError("Delivery not found", 404);
     }
 
+    // Logs can only be added after the package has left processing stage.
     if (delivery.status === "processing") {
       throw new AppError("change status to shipped");
     }
@@ -61,6 +62,7 @@ class DeliveryLogsController {
       throw new AppError("Unauthorized", 401);
     }
 
+    // Access is restricted to the owner of the delivery or sales staff.
     if (request.user.id !== delivery?.userId && request.user.role !== "sale") {
       throw new AppError("Unauthorized", 401);
     }

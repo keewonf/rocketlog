@@ -22,6 +22,7 @@ function ensureAuthenticated(
     }
 
     const [, token] = authHeader.split(" ");
+    // Decode token claims and attach authenticated user context to the request.
     const { role, sub: user_id } = verify(
       token,
       authConfig.jwt.secret,
@@ -34,7 +35,7 @@ function ensureAuthenticated(
 
     return next();
   } catch (error) {
-    throw new AppError("Invalida JWT token", 401);
+    throw new AppError("Invalid JWT token", 401);
   }
 }
 

@@ -41,6 +41,7 @@ class DeliveriesStatusController {
 
     const statusMessage = `O status do pedido foi alterado para ${statusLabelPtBr[status]}`;
 
+    // Persist a timeline event every time status changes.
     await prisma.deliveryLog.create({
       data: {
         deliveryId: id,

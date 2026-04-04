@@ -8,7 +8,7 @@ import { sign } from "jsonwebtoken";
 
 const bodySchema = z.object({
   email: z.email().trim(),
-  password: z.string().min(6, "Senha deve ter no mínimo 6 caracteres"),
+  password: z.string().min(6, "Password must be at least 6 characters long"),
 });
 
 class SessionsController {
@@ -29,6 +29,7 @@ class SessionsController {
 
     const { secret, expiresIn } = authConfig.jwt;
 
+    // Embed the user role in the token payload for downstream authorization checks.
     const token = sign({ role: user.role ?? "customer" }, secret, {
       subject: user.id,
       expiresIn,

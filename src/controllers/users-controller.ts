@@ -7,7 +7,7 @@ import { AppError } from "@/utils/AppError";
 const bodySchema = z.object({
   name: z.string().trim().min(1),
   email: z.email().trim(),
-  password: z.string().min(6, "Senha deve ter no mínimo 6 caracteres"),
+  password: z.string().min(6, "Password must be at least 6 characters long"),
   role: z.enum(["customer", "sale"]).optional(),
 });
 
@@ -32,6 +32,7 @@ class UsersController {
       },
     });
 
+    // Never expose credentials in API responses.
     const { password: _, ...userWithoutPassword } = user;
 
     return response.status(201).json(userWithoutPassword);

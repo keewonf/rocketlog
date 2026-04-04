@@ -6,9 +6,10 @@ import { deliveryLogsRoutes } from "./delivery-logs-routes";
 
 const routes = Router();
 
+// Group route modules by bounded context.
 routes.use("/users", usersRoutes);
 routes.use("/sessions", sessionsRoutes);
 routes.use("/deliveries", deliveriesRoutes);
-routes.use("/delivery-logs", deliveryLogsRoutes)
+routes.use("/delivery-logs", deliveryLogsRoutes);
 
 export { routes };
