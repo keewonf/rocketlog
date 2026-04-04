@@ -7,6 +7,7 @@
     "dev": "tsx --watch --env-file .env src/server.ts",
     "test": "jest",
     "test:dev": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --watchAll --runInBand",
+    "build": "tsup src",
     "prisma:studio:test": "cross-env DATABASE_URL=postgresql://postgres:postgres@localhost:5433/rocketlog_test?schema=public prisma studio"
   },
   "author": "Lucas Moura",
@@ -32,6 +33,7 @@
     "prisma": "^7.6.0",
     "supertest": "^7.2.2",
     "ts-jest": "^29.4.9",
+    "tsup": "^8.5.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
