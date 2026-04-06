@@ -42,6 +42,7 @@ Crie um arquivo `.env` na raiz do projeto com base em `.env-example`:
 ```env
 DATABASE_URL=
 JWT_SECRET=
+PORT=
 POSTGRES_USER=
 POSTGRES_PASSWORD=
 POSTGRES_DB=
@@ -49,6 +50,8 @@ POSTGRES_TEST_USER=
 POSTGRES_TEST_PASSWORD=
 POSTGRES_TEST_DB=
 ```
+
+As variáveis `POSTGRES_*` continuam sendo usadas pelo Docker local e pelo banco de testes, mas não são exigidas pela aplicação em runtime.
 
 ## Como rodar o projeto
 
